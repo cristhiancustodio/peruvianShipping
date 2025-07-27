@@ -1,0 +1,12 @@
+services:
+  react-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "100:80"
+    restart: unless-stopped
+    # Opcional: Si necesitas variables de entorno para tu aplicación
+    # environment:
+    #   - NODE_ENV=production
+    #   - API_URL=https://tu-api.com
