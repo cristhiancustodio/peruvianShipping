@@ -12,7 +12,7 @@ export function useDocuments() {
         try {
             const response = await API.get("");
 
-            setRecords(response.data.data)
+            setRecords(response.data)
         } catch (error) {
             console.error("Error fetching records:", error)
             return [];
@@ -27,8 +27,10 @@ export function useDocuments() {
         await getListRecords();
     }
 
-    const deleteRecord = (id: string) => {
-        setRecords((prev) => prev.filter((record) => record.id !== id))
+    const deleteRecord = async (id: string) => {
+        await API.delete(`/${id}`);
+        //setRecords((prev) => prev.filter((record) => record.id !== id))
+        await getListRecords();
     }
 
     const editRecord = (id: string, updatedRecord: Omit<DocumentRecord, "id" | "fechaCreacion">) => {
