@@ -10,8 +10,8 @@ export function useDocuments() {
     const getListRecords = async () => {
 
         try {
-            const response = await API.get("");
-
+            // const api = await API();
+            const response = await API.get("")
             setRecords(response.data)
         } catch (error) {
             console.error("Error fetching records:", error)
