@@ -28,15 +28,15 @@ export const handler = async (event, context) => {
         const method = event.requestContext.http.method;
         const id = event?.pathParameters?.id;
         const body = event?.body ?? "";
-        
+
         let response;
-        
+
         switch (method) {
             case 'POST':
                 response = await insertRegister(JSON.parse(body));
                 break;
             case 'GET':
-                response = id? await getItem(id) : await getAllItems();
+                response = id ? await getItem(id) : await getAllItems();
                 break;
             case 'PUT':
                 response = await updateItem(id, JSON.parse(body));
@@ -71,19 +71,13 @@ export const handler = async (event, context) => {
 
 const insertRegister = async (data) => {
     try {
-        const { fechaLlegada, cliente, numeroOrden, observacion, diasAntesAlerta, documentosPendientes } = data;
 
         const id = randomUUID();
         const paramsDB = {
             TableName: TABLE_NAME,
             Item: {
                 id: id,
-                fechaLlegada: fechaLlegada,
-                cliente: cliente,
-                numeroOrden: numeroOrden,
-                observacion: observacion,
-                diasAntesAlerta: diasAntesAlerta,
-                documentosPendientes: documentosPendientes,
+                ...data,
                 fechaCreacion: new Date().toISOString()
             }
         };

@@ -53,7 +53,7 @@
 	--popover-foreground: oklch(0.145 0 0);
 
 	/*AQUI ES DONDE SE CAMBIA EL COLOR DEL TEMA*/
-	--primary: red;
+	--primary: #6802d4;
 	--primary-foreground: oklch(0.985 0 0);
 	
 	

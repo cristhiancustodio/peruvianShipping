@@ -21,7 +21,6 @@ export function useDocuments() {
 
     const addRecord = async (record: Omit<DocumentRecord, "id" | "fechaCreacion">) => {
         //Axios.post("/api/documents", newRecord) // Assuming you have an API endpoint to save records
-        console.log(record);
         await API.post("", record);
         //setRecords((prev) => [newRecord, ...prev])
         await getListRecords();

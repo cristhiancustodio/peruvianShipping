@@ -3,7 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Calendar, User, FileText, Clock, Trash2, AlertCircle, Pencil } from "lucide-react"
+import { Calendar, User, FileText, Clock, Trash2, AlertCircle, Pencil, Check } from "lucide-react"
 import type { DocumentRecord } from "@/type/DocumentsType"
 
 
@@ -24,7 +24,7 @@ export function RecordsList({ records, onDelete, onEdit }: RecordsListProps) {
             day: "numeric",
         })
     }
-    
+
     const isAlertDate = (alertDate: string) => {
         if (!alertDate) return false
         const today = new Date()
@@ -88,6 +88,12 @@ export function RecordsList({ records, onDelete, onEdit }: RecordsListProps) {
                                     Alerta activa
                                 </div>
                             )}
+                            {record.notificado 
+                            ? <div className="text-sm text-green-600 flex gap-1">
+                                <Check size={20} />
+                                Notificado</div>
+                            : <div className="text-sm text-amber-600">Pendiente por notificar</div>
+                            }
                         </CardHeader>
 
                         <CardContent className="space-y-4">

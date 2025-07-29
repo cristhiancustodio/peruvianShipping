@@ -18,13 +18,17 @@ interface RegistrationFormProps {
 }
 
 export function RegistrationForm({ onSubmit }: RegistrationFormProps) {
-    const [formData, setFormData] = useState({
+
+    const paramsDefault = {
         fechaLlegada: "",
         cliente: "",
         numeroOrden: "",
         observacion: "",
         diasAntesAlerta: "",
-    })
+        notificado: false
+    }
+
+    const [formData, setFormData] = useState(paramsDefault);
 
     const [documentos, setDocumentos] = useState<string[]>([])
     const [nuevoDocumento, setNuevoDocumento] = useState("")
@@ -58,13 +62,7 @@ export function RegistrationForm({ onSubmit }: RegistrationFormProps) {
         })
 
         // Reset form
-        setFormData({
-            fechaLlegada: "",
-            cliente: "",
-            numeroOrden: "",
-            observacion: "",
-            diasAntesAlerta: "",
-        })
+        setFormData(paramsDefault);
         setDocumentos([]);
         setNuevoDocumento("");
     }

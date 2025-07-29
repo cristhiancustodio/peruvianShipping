@@ -7,5 +7,6 @@ export interface DocumentRecord {
     observacion: string
     diasAntesAlerta: string
     fechaCreacion: string
+    notificado: boolean
 }
 
