@@ -17,13 +17,19 @@ interface RecordsListProps {
 
 export function RecordsList({ records, onDelete, onEdit }: RecordsListProps) {
     const formatDate = (dateString: string) => {
-        if (!dateString) return "No especificada"
-        return new Date(dateString).toLocaleDateString("es-ES", {
+        if (!dateString) return "No especificada";
+
+        // Crear la fecha en formato ISO y forzar hora local
+        const [year, month, day] = dateString.split('-').map(Number);
+        const date = new Date(year, month - 1, day); // Los meses son 0-indexados
+
+        return date.toLocaleDateString("es-PE", { // Usar es-PE para formato peruano
             year: "numeric",
             month: "long",
             day: "numeric",
-        })
-    }
+            timeZone: 'America/Lima'
+        });
+    };
 
     const isAlertDate = (alertDate: string) => {
         if (!alertDate) return false
@@ -88,11 +94,11 @@ export function RecordsList({ records, onDelete, onEdit }: RecordsListProps) {
                                     Alerta activa
                                 </div>
                             )}
-                            {record.notificado 
-                            ? <div className="text-sm text-green-600 flex gap-1">
-                                <Check size={20} />
-                                Notificado</div>
-                            : <div className="text-sm text-amber-600">Pendiente por notificar</div>
+                            {record.notificado
+                                ? <div className="text-sm text-green-600 flex gap-1">
+                                    <Check size={20} />
+                                    Notificado</div>
+                                : <div className="text-sm text-amber-600">Pendiente por notificar</div>
                             }
                         </CardHeader>
 

@@ -71,7 +71,7 @@ export const handler = async (event, context) => {
 
 const insertRegister = async (data) => {
     try {
-
+        
         const id = randomUUID();
         const paramsDB = {
             TableName: TABLE_NAME,
