@@ -149,7 +149,7 @@ export function RecordsList({ records, onDelete, onEdit }: RecordsListProps) {
                                 </div>
                             )}
 
-                            <div className="pt-2 border-t text-xs text-gray-500">Creado: {formatDate(record.fechaCreacion)}</div>
+                            <div className="pt-2 border-t text-xs text-gray-500">Creado: {new Date(record.fechaCreacion).toLocaleDateString("es-PE")}</div>
                         </CardContent>
                     </Card>
                 ))}
